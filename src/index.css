@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif !important;
+}
+.ant-form {
+  font-family: "Lato", sans-serif !important;
+}
+.flex-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.header-search {
+  max-width: 450px;
+  position: absolute;
+  top: 12px;
+  left: 0;
+}
+
+.search-field{
+  max-width: 450px;
+}
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+/* antd time-picker css  */
+.time-picker-now-btn {
+  color: rgba(216, 12, 12, 1);
+}
+.time-picker-now a:hover {
+  color: rgba(216, 12, 12, 1) !important;
+}
+
+.ant-btn-primary {
+  background: rgba(216, 12, 12, 1);
+}
+
+.time-picker-ok > .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+  background-color: red !important;
+}
+
+.ant-picker-header button {
+  color: white !important;
+}
