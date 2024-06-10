@@ -70,55 +70,42 @@ const uploadFileToS3 = async (
 
 export default uploadFileToS3;
 
-// const uploadImageToS3 = async (
-//   file,
-//   filename,
-//   upload_type,
-//   setUploadProgress = () => {}
-// ) => {
-//   // AWS.config.update({
-//   //   accessKeyId: ACCESS_KEY,
-//   //   secretAccessKey: SECRET_ACCESS_KEY,
-//   // });
-//   // const s3 = new AWS.S3({
-//   //   params: { Bucket: S3_BUCKET },
-//   //   region: REGION,
-//   // });
-//   const folder =
-//     upload_type == constant.COVER_TYPE
-//       ? constant.COVER_FOLDER
-//       : upload_type == constant.AUDIO_TYPE
-//         ? constant.AUDIO_FOLDER
-//         : upload_type == constant.VIDEO_TYPE
-//           ? constant.VIDEO_FOLDER
-//           : constant.PROFILE_FOLDER;
-//   const fileName = filename.split(".");
-//   const key_name = `${folder}/${fileName[0]}-${Date.now()}.${fileName[1]}`;
-//   const url = CDN_URL + key_name;
+// import AWS from 'aws-sdk';
+// import { toast } from 'react-toastify';
+
+// const S3_BUCKET = process.env.REACT_APP_S3_BUCKET_NAME;
+// const REGION = process.env.REACT_APP_S3_REGION;
+// const ACCESS_KEY = process.env.REACT_APP_S3_ACCESS_KEY;
+// const SECRET_ACCESS_KEY = process.env.REACT_APP_S3_SECRET_ACCESS_KEY;
+
+// const uploadFileToS3 = (file, bucketPath, handleUpload = () => {}) => {
+//   AWS.config.update({
+//     accessKeyId: ACCESS_KEY,
+//     secretAccessKey: SECRET_ACCESS_KEY
+//   });
+//   const s3 = new AWS.S3({
+//     params: { Bucket: S3_BUCKET },
+//     region: REGION
+//   });
 
 //   const params = {
 //     Bucket: S3_BUCKET,
-//     Key: key_name, // file.name,
-//     Body: file,
+//     Key: bucketPath, // file.name,
+//     Body: file
 //   };
+//   var upload = s3
+//     .putObject(params)
+//     .on('httpUploadProgress', () => {
+//       // console.log('Uploading ' + parseInt((evt.loaded * 100) / evt.total) + '%');
+//     })
+//     .promise();
 
-//   try {
-//     var upload = s3
-//       .putObject(params)
-//       .on("httpUploadProgress", (evt) => {
-//         const percentCount = parseInt((evt.loaded * 100) / evt.total);
-//         setUploadProgress(percentCount);
-//       })
-//       .promise();
-
-//     await upload.then(() => {
-//       return { status: 200, data: { url, key_name } };
-//     });
-//   } catch (error) {
-//     console.log(error, "aws error");
-//   }
+//   upload.then(() => {
+//     // console.log('+++S3 errror', err, data);
+//     // return { err, data };
+//     handleUpload();
+//   });
 // };
-// export { uploadImageToS3 };
 
 // export const deleteS3Object = async (bucketPath, handleDelete = () => {}) => {
 //   // return new Promise((resolve, reject) => {
@@ -126,16 +113,20 @@ export default uploadFileToS3;
 //     let s3bucket = new AWS.S3({
 //       accessKeyId: ACCESS_KEY,
 //       secretAccessKey: SECRET_ACCESS_KEY,
-//       Bucket: S3_BUCKET,
+//       Bucket: S3_BUCKET
 //     });
 //     var params = { Bucket: S3_BUCKET, Key: bucketPath };
+//     // console.log('params delete', params);
 //     s3bucket.deleteObject(params, function (err) {
+//       // console.log('++delete response', data, err);
 //       // an error occurred
-//       if (err) console.log("image delete failed");
+//       if (err) console.log('image delete failed');
 //       else handleDelete();
+//       //resolve(data); // successful response
+//       // console.log(typeof handleDelete, 'type');
 //     });
 //   } catch (e) {
-//     // toast.error("Something went wrong-----");
+//     toast.error('Something went wrong-----');
 //   }
 //   // });
 // };
